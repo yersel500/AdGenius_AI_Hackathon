@@ -1,0 +1,64 @@
+:root {
+  --background: #302c42;
+  --text-primary: #ffffff;
+  --text-secondary: #e4e4e7;
+  --purple-primary: #9333ea;
+  --purple-light: #a855f7;
+  --purple-dark: #6b21a8;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Inter, system-ui, -apple-system, sans-serif;
+  background-color: var(--background);
+  color: var(--text-primary);
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.btn-primary {
+  /* background-color: var(--purple-primary); */
+  background: linear-gradient(90deg, #8176af 0%, #c0b7e8 100%);
+  color: var(--text-primary);
+  border: none;
+}
+
+.btn-primary:hover {
+  /* background-color: var(--purple-dark); */
+  background: linear-gradient(90deg, #8176af 0%, #c0b7e8 100%);
+}
+
+.btn-outline {
+  background-color: transparent;
+  /* border: 2px solid var(--purple-primary); */
+  border: 2px solid var(--text-secondary);
+  color: var(--text-primary);
+}
+
+.btn-outline:hover {
+  /* background-color: var(--purple-primary); */
+  /* background-color: var(--text-secondary); */
+  background-color: #c0b7e8;
+}
