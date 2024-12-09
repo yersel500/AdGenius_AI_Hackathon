@@ -43,6 +43,16 @@ if news_data["status"] == "ok":
 else:
     print("Error:", news_data["message"])
 
+#Memes
+url_memes = "https://api.imgflip.com/get_memes"
+
+response_memes = requests.get(url_memes)
+memes_data = response_memes.json()
+
+if memes_data["success"] == True:
+    memes = memes_data["data"]["memes"]
+else:
+    print("Error generating memes")
 
 # User preferences model
 class UserPreferences(BaseModel):
@@ -83,6 +93,7 @@ agent = Agent(
         "or generate images. "
         "If user ask about another topic, only mentions you only focus in provide news and you are not able to respond question about other topics. "
         "In the news, always at the end provide also the url of the image: urlToImage"
+        'Include the meme url at the end of the reponse'
         'If the user includes "/image" in their message '
         "Just answer you are generating the image "
         'Use the "image_reply" if user ask to generate images. '
@@ -91,6 +102,7 @@ agent = Agent(
 )
 
 text_agent = Agent("groq:llama-3.3-70b-versatile")
+
 image_agent = Agent(
     "groq:llama-3.3-70b-versatile",
     system_prompt=(
@@ -101,14 +113,14 @@ image_agent = Agent(
 
 @agent.system_prompt
 def add_news():
-    return f" You have the following news: {articles}. Your reply will be based on this news"
+    return f" You have the following news: {articles}. Your reply will be based on this news. Also you should find a suitable meme using this list: {memes} and share the url of meme at the end in the response"
 
 
 @agent.tool
 async def image_reply(ctx: RunContext[MyDeps], prompt: str):
     r = await ctx.deps.image_agent.run(prompt)
     print(r.data)
-    request = ImageGenerationRequest(prompt=r.data, n=1, size="1024x1024")
+    request = ImageGenerationRequest(prompt=r.data, n=1, size="720x480")
     response = await generate_image(request)
     data = json.loads(response.body.decode())
 
@@ -129,17 +141,17 @@ class ImageMessage(BaseModel):
 class ImageGenerationRequest(BaseModel):
     prompt: str
     n: int = 1
-    size: str = "1024x1024"
+    size: str = "720x480"
 
 
 class ImageVariationRequest(BaseModel):
     image_id: str
     n: int = 1
-    size: str = "1024x1024"
+    size: str = "720x480"
 
 
 async def generate_dalle_image(
-    prompt: str, n: int = 1, size: str = "1024x1024"
+    prompt: str, n: int = 1, size: str = "720x480"
 ) -> dict:
     async with aiohttp.ClientSession() as session:
         async with session.post(
@@ -151,7 +163,7 @@ async def generate_dalle_image(
 
 
 async def create_image_variation(
-    image_path: str, n: int = 1, size: str = "1024x1024"
+    image_path: str, n: int = 1, size: str = "720x480"
 ) -> dict:
     async with aiohttp.ClientSession() as session:
         data = aiohttp.FormData()
