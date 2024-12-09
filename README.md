@@ -10,6 +10,8 @@ https://github.com/user-attachments/assets/c7a916ca-9778-4793-8be7-1fa69532b7db
 
 SocialConnectPro is an innovative AI-powered platform that revolutionizes how businesses connect with their audience through personalized storytelling. By leveraging cutting-edge AI technology and real-time news integration, we enable brands to create authentic, engaging content based on current events and trending topics that resonates with their target audience while maintaining scalability. Our platform ensures your brand stays relevant by automatically incorporating the latest news into your content strategy.
 
+![home page](https://github.com/user-attachments/assets/3d22f9dc-7b75-450c-b800-d6f1da9b2a9a)
+
 ## 🎯 Key Features
 
 - **AI Story Generation** 📖
