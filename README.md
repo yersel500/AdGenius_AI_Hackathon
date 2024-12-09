@@ -2,7 +2,7 @@
 
 # 🚀 SocialConnectPro: AI-Powered Story Generation Platform
 
-![SocialConnectPro](https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/2328.svg)
+https://github.com/user-attachments/assets/c7a916ca-9778-4793-8be7-1fa69532b7db
 
 > Transform engagement, one story at a time.
 
